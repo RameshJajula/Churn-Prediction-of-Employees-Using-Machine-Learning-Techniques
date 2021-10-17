@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Churn Prediction of Employees Using Machine Learning Techniques</title>
+  <link href='https//fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https//fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https//fonts.googleapis.com/css?family=Hind300' rel='stylesheet' type='text/css'>
+<link href='https//fonts.googleapis.com/css?family=Open+Sans+Condensed300' rel='stylesheet' type='text/css'>
+
+<style>
+.selcls { 
+   padding: 9px; 
+    border: solid 1px #C9302C; 
+    outline: 0; 
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #E78F8D), to(#FFFFFF)); 
+    background: -moz-linear-gradient(top, #FFFFFF, #E78F8D 1px, #FFFFFF 25px); 
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    border-radius:13px;
+    width:150px;
+    } 
+.seldemo {
+  background: #5E9E47;
+  height: 75px;
+  width:250px;
+  border-radius: 15px;
+  padding:20px;
+  font-size:22px;
+  color:#fff;  
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+div {
+   background-image:  url('C:\\Github\\exit_2.jpg');
+ 
+  background-attachment: fixed;
+  background-size: 100% 100%;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+h1 {
+  text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+ <div class="login">
+
+	<h1>Churn Prediction of Employees Using Machine Learning Techniques</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="POST" autocomplete="on">
+
+      
+
+<table style="width40%" class="center" >
+  <tr>
+     <td style="text-alignleft">   <strong>Age</strong> </td>  
+	 <td> <input type="number" name="Age" placeholder="18-80" required min="18" max="80"></td> 
+  <tr>
+     <td style="text-alignleft"> 
+	<strong>BusinessTravel</strong> 	  </td> 	
+		<td>	 <select id="BusinessTravel">
+        <option selected>(no value)</option>
+        <option value="Rarely">Rarely</option>
+        <option value="Frequently">Frequently</option>
+        <option value="No Travel">No Travel</option>
+		</select> </td> 
+	  </tr>
+
+	  <tr>
+     <td style="text-alignleft"> 
+        <strong>Daily Rate</strong> </td> 
+	<td><input type="number" name="Daily Rate" placeholder="100-1600" required min="100" max="1600" size="30"></td> 
+   </tr>
+
+	  <tr>
+     <td style="text-alignleft">   
+  <strong>Department</strong> </td> 
+   </td> 	
+		<td>	 
+		<select id="Department">
+        <option selected>(no value)</option>
+        <option value="Research & Development">Research & Development</option>
+        <option value="Human Resources">Human Resources</option>
+        <option value="Sales">Sales</option>
+		</select> </td> 
+	</tr>
+  
+
+       <tr><td> <strong>Distance From Home</strong> </td> <td> <input type="number" name="Distance From Home" placeholder="1-29" required min="1" max="29"></td> </tr>
+
+       <tr><td> <strong>Education</strong> </td> <td> <input type="number" name="Education" placeholder="1-5" required min="1" max="5"></td> </tr>
+
+       <tr><td> <strong>Education Field</strong> </td> <td> 
+	    <select id="BusinessTravel">
+        <option selected>(no value)</option>
+        <option value="Life Sciences">Life Sciences</option>
+        <option value="Medical">Medical</option>
+        <option value="Marketing">Marketing</option>
+		<option value="Technical Degree">Technical Degree</option>
+        <option value="Human Resources">Human Resources </option>
+        <option value="Other">Other</option>
+		</select>
+	   </td> </tr>
+
+       <tr><td> <strong>Environment Satisfaction</strong> </td> <td> <input type="number" name="Environment Satisfaction" placeholder="1-4" required min="1" max="4"></td> </tr>
+
+       <tr><td> <strong>Gender</strong> </td> <td> <input type="radio" name="Gender" id="Male" value="Male">Male  <input type="radio" name="Gender" id="Female" value="Female">Female</td> </tr>
+
+       <tr><td> <strong>Hourly Rate</strong> </td> <td> <input type="number" name="Hourly Rate" placeholder="30-100" required min="30" max="100"></td> </tr>
+
+       <tr><td> <strong>Job Involvement</strong> </td> <td> <input type="number" name="Job Involvement" placeholder="1-4" required min="1" max="4"></td> </tr>
+
+       <tr><td> <strong>Job Level</strong> </td> <td> <input type="number" name="Job Level" placeholder="1-5" required min="1" max="5"></td> </tr>
+
+       <tr><td> <strong>Job Role</strong> </td> <td> 
+	   
+	   	    <select id="BusinessTravel">
+        <option selected>(no value)</option>
+        <option value="Sales Executive">Sales Executive</option>
+        <option value="Research Scientist">Research Scientist</option>
+        <option value="Laboratory Technician">Laboratory Technician</option>
+		<option value="Manufacturing Director">Manufacturing Director</option>
+        <option value="Healthcare Representative">Healthcare Representative</option>
+        <option value="Manager">Manager</option>		
+		<option value="Sales Representative">Sales Representative</option>
+		<option value="Research Directorr">Research Director</option>
+        <option value="Human Resourcese">Human Resources</option>		
+		</select>
+	</td> </tr>
+
+       <tr><td> <strong>Job Satisfaction</strong> </td> <td> <input type="number" name="Job Satisfaction" placeholder="1-4" required min="1" max="4"></td> </tr>
+
+       <tr><td> <strong>Marital Status</strong> </td> <td> <input type="radio" name="Marital Status" id="Married" value="Married">Married  <input type="radio" name="Marital Status" id="Single" value="Single">Single  <input type="radio" name="Marital Status" id="Divorced" value="Divorced">Divorced</td> </tr>
+
+       <tr><td> <strong>Monthly Income</strong> </td> <td> <input type="number" name="Monthly Income" placeholder="1000-20000" required min="1000" max="20000" size="30"></td> </tr>
+
+       <tr><td> <strong>Number of Companies Worked in</strong> </td> <td> <input type="number" name="Number of Companies Worked in" placeholder="0-9" required min="1" max="9"></td> </tr>
+
+       <tr><td> <strong>Over Time</strong> </td> <td> <input type="radio" name="Over Time" id="Yes" value="Yes">Yes  <input type="radio" name="Over Time" id="No" value="No">No</td> </tr>
+
+       <tr><td> <strong>Performance Rating</strong> </td> <td> <input type="number" name="Performance Rating" placeholder="1-4" required min="1" max="4"></td> </tr>
+
+       <tr><td> <strong>Relationship Satisfaction</strong> </td> <td> <input type="number" name="Relationship Satisfaction" placeholder="1-4" required min="1" max="4"></td> </tr>
+
+       <tr><td> <strong>Stock Option Level</strong> </td> <td> <input type="number" name="Stock Option Level" placeholder="0-3" required min="0" max="3"></td> </tr>
+
+       <tr><td> <strong>Total Working Years</strong> </td> <td> <input type="number" name="Total Working Years" placeholder="0-40" required min="0" max="40"></td> </tr>
+
+       <tr><td> <strong>Training Times Last Year</strong> </td> <td> <input type="number" name="Training Times Last Year" placeholder="0-6" required min="0" max="6"></td> </tr>
+
+       <tr><td> <strong>Work Life Balance</strong> </td> <td> <input type="number" name="Work Life Balance" placeholder="1-4" required min="1" max="4"></td> </tr>
+
+       <tr><td> <strong>Years At Company</strong> </td> <td> <input type="number" name="Years At Company" placeholder="0-40" required min="0" max="40"></td> </tr>
+
+       <tr><td> <strong>Years In Current Role</strong> </td> <td> <input type="number" name="Years In Current Role" placeholder="0-18" required min="0" max="18"></td> </tr>
+
+       <tr><td> <strong>Years Since Last Promotion</strong> </td> <td> <input type="number" name="Years Since Last Promotion" placeholder="0-15" required min="0" max="15"></td> </tr>
+		
+		<tr><td> <strong>Years With Curr Manager</strong> </td> <td>  <input type="number" name="Years With Curr Manager" placeholder="0-17" required min="0" max="17"></td> </tr> 
+	 
+		</table>
+		
+<table class="center" ><tr><td> <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button> </td></tr></table>
+
+    </form>
+  
+ </div>
+
+
+</body>
+</html>
