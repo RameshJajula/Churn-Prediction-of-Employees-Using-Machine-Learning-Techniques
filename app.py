@@ -359,12 +359,15 @@ def predict():
     # df.to_csv ('features.csv',index=False)
 
     prediction = model.predict (df)
+    print("###############################")
+    print(prediction)
+    print("################################")
 
     if prediction == 0:
-        return render_template ('index.html',prediction_text='Employee Might Not Leave The Job')
+        return render_template ('Exit_notok.html',prediction_text='Employee Might Not Leave The Job')
 
     else:
-        return render_template ('index.html',prediction_text='Employee Might Leave The Job')
+        return render_template ('Exit_ok.html',prediction_text='Employee Might Leave The Job')
 
 
 if __name__ == "__main__":
